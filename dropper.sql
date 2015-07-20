@@ -1,4 +1,5 @@
 #Script para limpiar una base en caso de que falle algun procedimiento de import
+select ' alter trigger SYS.XDB_PI_TRIG disable; ' from dual;
 select
 trim(case
      when object_type = 'TABLE' then 'drop ' || object_type
@@ -11,3 +12,4 @@ trim(case
      end || ';')
 from dba_objects
 where owner not in ('SYS', 'SYSTEM', 'SYSAUX', 'SYSMAN');
+select ' alter trigger SYS.XDB_PI_TRIG enable; ' from dual;
