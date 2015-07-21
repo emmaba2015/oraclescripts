@@ -1,4 +1,8 @@
 #Script para limpiar una base en caso de que falle algun procedimiento de import
+set head off
+set pages 0
+set long 9999999
+spool dropper.sql
 select ' alter trigger SYS.XDB_PI_TRIG disable; ' from dual;
 select
 trim(case
@@ -13,3 +17,4 @@ trim(case
 from dba_objects
 where owner not in ('SYS', 'SYSTEM', 'SYSAUX', 'SYSMAN');
 select ' alter trigger SYS.XDB_PI_TRIG enable; ' from dual;
+spool off
