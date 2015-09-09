@@ -1,0 +1,8 @@
+export ORACLE_SID=SIDBASE
+rman target / catalog rmanuser/rmanuser@SIDBASE
+/* Verifico la ventana actual:*/
+show retention policy;
+/* Se cambia el parametro para matener los dias de backup */
+configure retention policy to recovery window of 3 days;
+/* Verifico que el cambio se realizo correctamente: */
+show retention policy;
